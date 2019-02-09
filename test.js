@@ -1,47 +1,31 @@
 const launchit = require('.')
 const { MongoClient } = require('mongodb')
 
-const boot = [
-  ['echo "hola"', { close: true }],
-  // 'echo "ciao"',
-  // 'echo "third"',
-  // ['echo "last"', { delayAfterRun: 15 }],
-]
+const boot = [['mongod --dbpath /data/db4', { close: 5 }]]
 
 const checkMongo = async () => {
-  let client
   try {
-    client = await MongoClient.connect('mongodb://localhost:27017', {
+    const client = await MongoClient.connect('mongodb://localhost:27017', {
       useNewUrlParser: true,
     })
+    client.close()
     return true
   } catch (err) {
-    throw 'No MongoDb Connection'
+    return false
   }
-  client.close()
 }
 
-const checkFalse = async () => {
-  return await false
-}
-const anotherCheckFalse = async () => {
-  return await false
-}
-
-const apps = [
-  {
-    name: 'my-site',
-    path: '/Users/lio/Projects/elrumordelaluz',
-    script: 'yarn develop',
+const apps = {
+  app1: {
+    path: './test/app1',
+    script: 'yarn stats',
     dependencies: [checkMongo],
+  },
+  app2: {
+    path: './test/app2',
+    script: 'yarn build',
     defaultChecked: true,
   },
-  {
-    name: 'another-site',
-    path: '/Users/lio/Projects/elrumordelaluz',
-    script: 'yarn develop',
-    dependencies: [checkFalse, anotherCheckFalse],
-  },
-]
+}
 
 launchit({ boot, apps })
