@@ -29,7 +29,7 @@ bson@^1.1.0:
   resolved "https://registry.yarnpkg.com/bson/-/bson-1.1.0.tgz#bee57d1fb6a87713471af4e32bcae36de814b5b0"
   integrity sha512-9Aeai9TacfNtWXOYarkFJRW2CWo+dRon+fuLZYJmvLV3+MiUp0bEI6IAZfXEIg7/Pl/7IWlLaDnhzTsD81etQA==
 
-chalk@2.4.2, chalk@^2.4.2:
+chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
   integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
@@ -294,11 +294,6 @@ tmp@^0.0.33:
   integrity sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==
   dependencies:
     os-tmpdir "~1.0.2"
-
-try-exec@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/try-exec/-/try-exec-1.0.0.tgz#164a5aae7ed714843729ba98710a33cbfa88aaa1"
-  integrity sha512-zyacfWmkN8ys3OXhlWcRayRXDWWxgL7qWn1+K+lUG56ca4D3hfWccvJkZ4kZfs8EPCwiUZvAfvIfwtTb6eDa8Q==
 
 tslib@^1.9.0:
   version "1.9.3"

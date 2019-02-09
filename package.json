@@ -6,10 +6,8 @@
   "author": "Lionel Tzatzkin <elrumordelaluz@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "chalk": "2.4.2",
     "inquirer": "6.2.2",
-    "iterm-tab": "0.3.0",
-    "try-exec": "1.0.0"
+    "iterm-tab": "0.3.0"
   },
   "devDependencies": {
     "mongodb": "3.1.13"

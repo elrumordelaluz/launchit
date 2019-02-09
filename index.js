@@ -1,4 +1,3 @@
-const chalk = require('chalk')
 const openTab = require('iterm-tab')
 const inquirer = require('inquirer')
 const openEditor = require('./openEditor')
@@ -84,7 +83,7 @@ const launchIt = async ({ boot = [], apps } = {}) => {
       for (let service of services) {
         const { path, script } = apps[service]
         await openTab(`cd ${path} && ${script}`)
-        console.log(chalk.blue(`> Service ${service} opened`))
+        console.log(`> Service ${service} opened`)
         if (editAll || (!editAll && editSingle.includes(service))) {
           await openEditor(path)
         }
@@ -94,8 +93,7 @@ const launchIt = async ({ boot = [], apps } = {}) => {
       throw 'Bye Bye!'
     }
   } catch (err) {
-    console.log({ err })
-    console.log(chalk.bold.red(err))
+    console.log(err)
     process.exit()
   }
 }
