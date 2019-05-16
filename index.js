@@ -63,7 +63,7 @@ const launchIt = async ({ boot = [], apps } = {}) => {
         type: 'confirm',
         message: `Do you want to open all services in Code Editor?`,
         name: 'editAll',
-        default: true,
+        default: false,
         when: answers => {
           return answers.services.length
         },
