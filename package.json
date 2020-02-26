@@ -6,11 +6,11 @@
   "author": "Lionel Tzatzkin <elrumordelaluz@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "inquirer": "6.5.0",
+    "inquirer": "7.0.4",
     "iterm-tab": "0.3.0"
   },
   "devDependencies": {
-    "mongodb": "3.2.7"
+    "mongodb": "3.5.4"
   },
   "scripts": {
     "test": "node ./test"

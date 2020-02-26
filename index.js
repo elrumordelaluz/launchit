@@ -2,7 +2,7 @@ const openTab = require('iterm-tab')
 const inquirer = require('inquirer')
 const openEditor = require('./openEditor')
 
-const launchIt = async ({ boot = [], apps } = {}) => {
+const launchIt = async ({ boot = [], apps, skipEditor = false } = {}) => {
   try {
     if (boot.length) {
       for (let service of boot) {
@@ -65,7 +65,7 @@ const launchIt = async ({ boot = [], apps } = {}) => {
         name: 'editAll',
         default: false,
         when: answers => {
-          return answers.services.length
+          return answers.services.length && !skipEditor
         },
       },
       {
@@ -74,18 +74,24 @@ const launchIt = async ({ boot = [], apps } = {}) => {
         name: 'editSingle',
         choices: answers => answers.services.map(s => s),
         when: answers => {
-          return answers.services.length && !answers.editAll
+          return answers.services.length && !answers.editAll && !skipEditor
         },
       },
     ])
 
     if (services.length > 0) {
       for (let service of services) {
-        const { path, script } = apps[service]
+        const { path, script, waitBefore } = apps[service]
+        if (waitBefore && typeof waitBefore === 'number') {
+          await timeout(waitBefore)
+        }
         await openTab(`cd ${path} && ${script}`)
-        console.log(`> Service ${service} opened`)
-        if (editAll || (!editAll && editSingle.includes(service))) {
+        if (
+          !skipEditor &&
+          (editAll || (!editAll && editSingle.includes(service)))
+        ) {
           await openEditor(path)
+          console.log(`> Service ${service} opened in VS Code`)
         }
       }
       process.exit()
@@ -97,5 +103,7 @@ const launchIt = async ({ boot = [], apps } = {}) => {
     process.exit()
   }
 }
+
+const timeout = ms => new Promise(res => setTimeout(res, ms))
 
 module.exports = launchIt

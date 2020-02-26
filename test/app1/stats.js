@@ -3,7 +3,7 @@ const test = require('assert')
 
 MongoClient.connect(
   'mongodb://localhost:27017',
-  { useNewUrlParser: true },
+  { useNewUrlParser: true, useUnifiedTopology: true },
   (err, client) => {
     const db = client.db('test')
     db.stats().then(stats => {

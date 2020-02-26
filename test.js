@@ -7,6 +7,7 @@ const checkMongo = async () => {
   try {
     const client = await MongoClient.connect('mongodb://localhost:27017', {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     })
     client.close()
     return true
@@ -25,7 +26,8 @@ const apps = {
     path: './test/app2',
     script: 'yarn build',
     defaultChecked: true,
+    waitBefore: 5000,
   },
 }
 
-launchit({ boot, apps })
+launchit({ boot, apps, skipEditor: true })
