@@ -1,6 +1,6 @@
 const openTab = require('iterm-tab')
 const inquirer = require('inquirer')
-const openEditor = require('./openEditor')
+const openEditor = require('launch-editor')
 
 const launchIt = async ({ boot = [], apps, skipEditor = false } = {}) => {
   try {
@@ -38,18 +38,17 @@ const launchIt = async ({ boot = [], apps, skipEditor = false } = {}) => {
           // const dependenciesArray = Object.keys(dependeciesResults[index])
           const disabled = dependeciesResults[app]
             ? Object.keys(dependeciesResults[app]).reduce(
-                (acc, next, _index) => {
-                  const isLast =
-                    _index === Object.keys(dependeciesResults[app]).length - 1
-                  const curr = dependeciesResults[app][next]
-                  return curr
-                    ? acc
-                    : `${isLast ? 'dependecies not active: ' : ''}${acc}${
-                        acc !== '' ? ', ' : ''
-                      }${next}`
-                },
-                ''
-              )
+              (acc, next, _index) => {
+                const isLast =
+                  _index === Object.keys(dependeciesResults[app]).length - 1
+                const curr = dependeciesResults[app][next]
+                return curr
+                  ? acc
+                  : `${isLast ? 'dependecies not active: ' : ''}${acc}${acc !== '' ? ', ' : ''
+                  }${next}`
+              },
+              ''
+            )
             : false
 
           return {

@@ -30,4 +30,4 @@ const apps = {
   },
 }
 
-launchit({ boot, apps, skipEditor: true })
+launchit({ boot, apps, skipEditor: false })
