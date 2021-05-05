@@ -89,7 +89,7 @@ const launchIt = async ({ boot = [], apps, skipEditor = false } = {}) => {
           !skipEditor &&
           (editAll || (!editAll && editSingle.includes(service)))
         ) {
-          await openEditor(path)
+          await openEditor(path,'code')
           console.log(`> Service ${service} opened in VS Code`)
         }
       }
